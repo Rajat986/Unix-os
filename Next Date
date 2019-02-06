@@ -1,0 +1,99 @@
+//WAP to find the next date of the date given:-
+#include<stdio.h>
+void main()
+{
+	int date,month,year,ndate;
+yo:	printf("Enter the date[dd/mm/yyyy]: ");
+	scanf("%d",&date);
+	printf("/");
+	scanf("%d",&month);
+	printf("/");
+	scanf("%d",&year);
+	printf("Entered date is: %d/%d/%d\n",date, month, year);
+	if(date <= 0 || date > 31)
+	{
+d:		printf("The date is incorrect!!!\n");
+		goto yo;
+	}
+	if(month <= 0 || month > 12)
+	{
+m:		printf("The month is incorrect!!!\n");
+		goto yo;
+	}
+	switch(month)
+	{
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+			if(date >= 1 && date < 31)
+				date++;
+			else
+			if(date == 31)
+			{
+				date=1;
+				month++;
+			}
+			printf("Now date is: %d/%d/%d\n",date,month,year);
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			if(date >= 1 && date < 30)
+				date++;
+			else
+			if(date == 30)
+			{
+				date=1;
+				month++;
+			}
+			printf("Now date is: %d/%d/%d\n",date,month,year);
+			break;
+		case 2:
+			if(year%4 == 0 || year%400 == 0 && year%100 == 0)
+			{
+				printf("Leap year!\n");
+				if(date == 29)
+				{
+					month++;
+					date=1;
+					goto p;
+				}
+				date++;
+			}
+			else
+			if(date >= 1 && date < 28)
+			{
+				date++;
+
+			}
+			else
+			if(date == 28)
+			{
+				date=1;
+				month++;
+			}
+			else
+				goto d;
+p:			printf("Now date is: %d/%d/%d\n",date,month,year);
+			break;
+
+		case 12:
+			if(date >=1 && date < 31)
+			{
+				date++;
+			}
+			else
+			if(date ==31)
+			{
+				date=1;
+				month=1;
+				year++;
+			}
+			printf("Now date is: %d/%d/%d\n",date,month,year);
+
+	}
+}
